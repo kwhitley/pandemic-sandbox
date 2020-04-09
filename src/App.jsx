@@ -6,6 +6,7 @@ import { Home } from './components/Home'
 import { Details } from './components/Details'
 import { SidePanel } from './components/SidePanel'
 import { Layout } from './components/Layout'
+import { CollectionProvider } from './contexts/CollectionContext'
 
 const StyledHello = styled.div`
   // font-size: 
@@ -20,15 +21,17 @@ const MainPanel = styled.div`
 const App = () => {
   return (
     <BrowserRouter>
-      <Layout>
-        <SidePanel />
-        <MainPanel>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/:collection/:id" element={<Details />} />
-          </Routes>
-        </MainPanel>
-      </Layout>
+      <CollectionProvider>
+        <Layout>
+          <SidePanel />
+          <MainPanel>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/:collection/:id" element={<Details />} />
+            </Routes>
+          </MainPanel>
+        </Layout>
+      </CollectionProvider>
     </BrowserRouter>
   )
 }
